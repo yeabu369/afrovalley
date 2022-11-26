@@ -1,10 +1,25 @@
-import { Link, routes } from '@redwoodjs/router'
+// This page will be rendered when an error makes it all the way to the top of the
+// application without being handled by a Javascript catch statement or React error
+// boundary.
+//
+// You can modify this page as you wish, but it is important to keep things simple to
+// avoid the possibility that it will cause its own error. If it does, Redwood will
+// still render a generic error page, but your users will prefer something a bit more
+// thoughtful. =)
 
-const HomePage = () => (
-  <main>
-    <style
-      dangerouslySetInnerHTML={{
-        __html: `
+// Ensures that production builds do not include the error page
+let RedwoodDevFatalErrorPage = undefined
+if (process.env.NODE_ENV === 'development') {
+  RedwoodDevFatalErrorPage =
+    require('@redwoodjs/web/dist/components/DevFatalErrorPage').DevFatalErrorPage
+}
+
+export default RedwoodDevFatalErrorPage ||
+  (() => (
+    <main>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
               html, body {
                 margin: 0;
               }
@@ -35,19 +50,12 @@ const HomePage = () => (
                 color: #2D3748;
               }
             `,
-      }}
-    />
-    <section>
-      <h1>Welcome to RedwoodJS!</h1>
-      <p>
-        Find me in <code>./web/src/pages/HomePage/HomePage.js</code>
-      </p>
-      <p>
-        My default route is named <code>home</code>, link to me with `
-        <Link to={routes.home()}>Home</Link>`
-      </p>
-    </section>
-  </main>
-)
-
-export default HomePage
+        }}
+      />
+      <section>
+        <h1>
+          <span>Something went wrong</span>
+        </h1>
+      </section>
+    </main>
+  ))
