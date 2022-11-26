@@ -1,25 +1,25 @@
 {
+  "name": "afrovalley",
+  "version": "0.0.0",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "api",
-      "web",
-      "packages/*"
-    ]
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@redwoodjs/core": "3.5.0"
-  },
-  "eslintConfig": {
-    "extends": "@redwoodjs/eslint-config",
-    "root": true
+    "eslint-config-custom": "workspace:*",
+    "prettier": "latest",
+    "turbo": "latest"
   },
   "engines": {
-    "node": ">=14.19 <=16.x",
-    "yarn": ">=1.15"
+    "node": ">=14.0.0"
   },
-  "prisma": {
-    "seed": "yarn rw exec seed"
-  },
-  "packageManager": "yarn@3.2.4"
+  "dependencies": {},
+  "packageManager": "pnpm@7.14.2"
 }
