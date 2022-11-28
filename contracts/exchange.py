@@ -121,4 +121,3 @@ if __name__ == "__main__":
     with open("app_spec.json", "w") as f:
         f.write(json.dumps(app.application_spec(), indent=4))
 
-# q: Command to freeze requirements file    
