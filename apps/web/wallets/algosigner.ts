@@ -4,9 +4,9 @@ declare const AlgoSigner: any
 export class AlgoSignerSession {
   // q: What's the problem with the declaration below?
   // a: The return type is not inferred correctly
-  accounts: Array<{address: string}>
+  accounts: Array<{ address: string }> | undefined
 
-  constructor () {
+  constructor() {
     if (typeof AlgoSigner === 'undefined') {
       alert('AlgoSigner is not installed')
     } else {
@@ -14,11 +14,11 @@ export class AlgoSignerSession {
     }
   }
 
-  async getAccounts () {
+  async getAccounts() {
     this.accounts = await AlgoSigner.accounts({ ledger: 'TestNet' })
   }
 
-  async signTxns (unsignedTxns: Array<algosdk.Transaction>) {
+  async signTxns(unsignedTxns: Array<algosdk.Transaction>) {
     AlgoSigner.signTxns(unsignedTxns.map(txn => AlgoSigner.encoding.msgpackToBase64(txn.toByte())))
   }
 }
