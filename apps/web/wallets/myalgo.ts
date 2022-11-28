@@ -3,7 +3,7 @@ import algosdk from 'algosdk'
 
 export class MyAlgoSession {
   myAlgoConnect: MyAlgoConnect
-  accounts: Array<Accounts>
+  accounts: Array<Accounts> | undefined
 
   constructor () {
     this.myAlgoConnect = new MyAlgoConnect({ disableLedgerNano: false })

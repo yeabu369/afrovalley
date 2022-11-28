@@ -5,7 +5,7 @@ import { formatJsonRpcRequest } from '@json-rpc-tools/utils'
 
 export class WalletConnectSession {
   connector: WalletConnect
-  account: string
+  account: string | undefined
 
   constructor () {
     // Create a connector
